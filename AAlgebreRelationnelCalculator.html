@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculateur d'Algèbre Relationnelle</title>
+    
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Calculateur <span>Algèbre Relationnelle</span></h1>
+    <div class="actions">
+        <button class="btn-secondary" onclick="loadExample()">Charger l'exemple</button>
+        <button class="btn-secondary" onclick="resetAll()">Réinitialiser</button>
+    </div>
+</header>
+
+<main>
+    <!-- Colonne Gauche : Données -->
+    <section class="panel">
+        <div class="panel-header">
+            <span class="panel-title">Base de Données (Relations)</span>
+            <button class="btn-primary" onclick="openAddTableModal()">+ Nouvelle Table</button>
+        </div>
+        <div class="panel-content" id="databaseView">
+            <div class="empty-state">
+                Aucune table. Créez-en une ou chargez l'exemple.
+            </div>
+        </div>
+    </section>
+
+    <!-- Colonne Centrale : Calculateur -->
+    <section class="panel">
+        <div class="panel-header">
+            <span class="panel-title">Opérateur</span>
+        </div>
+        <div class="panel-content">
+            
+            <div class="op-grid">
+                <button class="op-btn active" onclick="setOperation('select')" id="btn-select">
+                    <span class="op-symbol">σ (Sélection)</span>
+                </button>
+                <button class="op-btn" onclick="setOperation('project')" id="btn-project">
+                    <span class="op-symbol">π (Projection)</span>
+                </button>
+                <button class="op-btn" onclick="setOperation('union')" id="btn-union">
+                    <span class="op-symbol">∪ (Union)</span>
+                </button>
+                <button class="op-btn" onclick="setOperation('difference')" id="btn-difference">
+                    <span class="op-symbol">− (Différence)</span>
+                </button>
+                <button class="op-btn" onclick="setOperation('product')" id="btn-product">
+                    <span class="op-symbol">×</span>
+                    <span>Produit</span>
+                </button>
+                <button class="op-btn" onclick="setOperation('rename')" id="btn-rename">
+                    <span class="op-symbol">ρ (Renommer)</span>
+                </button>
+            </div>
+
+            <div id="op-form">
+                <!-- Formulaire dynamique généré par JS -->
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button class="btn-primary" style="width: 100%; justify-content: center;" onclick="executeOperation()">
+                    Exécuter l'opération
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Colonne Droite : Résultats -->
+    <section class="panel">
+        <div class="panel-header">
+            <span class="panel-title">Résultats</span>
+            <button class="btn-danger" style="font-size: 0.8rem; padding: 4px 8px;" onclick="clearResults()">Effacer</button>
+        </div>
+        <div class="panel-content" id="resultsView">
+            <div class="empty-state">
+                Les résultats des opérations s'afficheront ici.
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Modal Ajout Table -->
+<div class="modal-overlay" id="addTableModal">
+    <div class="modal">
+        <h2>Ajouter une nouvelle table</h2>
+        <div class="form-group">
+            <label>Nom de la table</label>
+            <input type="text" id="newTableName" placeholder="ex: Etudiants">
+        </div>
+        <div class="form-group">
+            <label>Colonnes (séparées par des virgules)</label>
+            <input type="text" id="newTableCols" placeholder="ex: id, nom, age">
+        </div>
+        <div class="form-group">
+            <label>Lignes de données (JSON ou CSV simple)</label>
+            <textarea id="newTableData" rows="5" style="width:100%; padding:8px; border:1px solid var(--border); border-radius:6px;" placeholder='[["1", "Alice", "22"], ["2", "Bob", "24"]]'></textarea>
+            <div class="helper-text">Format liste de listes. Les nombres peuvent être des nombres.</div>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 15px;">
+            <button class="btn-secondary" onclick="closeModal('addTableModal')">Annuler</button>
+            <button class="btn-primary" onclick="createNewTable()">Créer</button>
+        </div>
+    </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+
+	<script src="script.js"></script>
+</body>
+</html>

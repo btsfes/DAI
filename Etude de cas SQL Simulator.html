@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP AtlasShop - BTS DAI</title>
+    <style>
+        :root {
+            --primary-color: #006233; /* Vert Maroc */
+            --accent-color: #c1272d; /* Rouge Maroc */
+            --bg-color: #f8f9fa;
+            --text-color: #2c3e50;
+            --border-color: #dee2e6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Container simulant une feuille A4 */
+        .page-container {
+            max-width: 850px;
+            margin: 20px auto;
+            background: white;
+            padding: 40px 60px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            min-height: 1000px;
+            position: relative;
+        }
+
+        /* En-tête */
+        header {
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        header h1 {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 24px;
+            text-transform: uppercase;
+        }
+
+        header .infos {
+            text-align: right;
+            font-size: 14px;
+            color: #555;
+        }
+
+        header .infos strong {
+            display: block;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        /* Contenu */
+        h2 {
+            color: var(--text-color);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 10px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            background-color: #f1f1f1;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        ul {
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* Blocs de code */
+        pre {
+            background-color: #282c34;
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 13px;
+            color: #abb2bf;
+        }
+
+        .keyword { color: #c678dd; font-weight: bold; }
+        .string { color: #98c379; }
+        .number { color: #d19a66; }
+        .comment { color: #5c6370; font-style: italic; }
+
+        /* Grille d'évaluation */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        table th, table td {
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Bouton d'impression */
+        .print-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            font-weight: bold;
+            transition: background 0.3s;
+            z-index: 1000;
+        }
+
+        .print-btn:hover {
+            background-color: #004d28;
+        }
+
+        /* Pied de page */
+        footer {
+            margin-top: 50px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 10px;
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Style d'impression */
+        @media print {
+            body {
+                background-color: white;
+            }
+            .page-container {
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                max-width: 100%;
+            }
+            .print-btn {
+                display: none;
+            }
+            h2 {
+                page-break-before: auto;
+                background-color: #f1f1f1 !important;
+                -webkit-print-color-adjust: exact;
+            }
+            table th {
+                background-color: var(--primary-color) !important;
+                color: white !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="print-btn" onclick="window.print()">🖨️ Imprimer le sujet</button>
+
+    <div class="page-container">
+        <!-- EN-TÊTE -->
+        <header>
+            <div>
+                <h1>TP : "AtlasShop Manager"</h1>
+                <p style="margin-top: 5px; font-style: italic; color:#666;">Gestion de données E-commerce au Maroc</p>
+            </div>
+            <div class="infos">
+                <strong>Cycle BTS</strong>
+                <strong>Filière DAI - 1ère Année</strong>
+                <span>Enseignant : Mr Z MESSGHATI</span>
+            </div>
+        </header>
+
+        <!-- SECTION 1 -->
+        <section>
+            <h2>1. Contexte et Marché</h2>
+            <p>
+                Le marché du e-commerce connaît une croissance fulgurante au Maroc, notamment à travers des plateformes comme Jumia ou des startups installées au <strong>Technopark de Casablanca</strong>. 
+                Vous êtes développeur Front-End junior chez <strong>AtlasShop</strong>, une startup marocaine spécialisée dans la vente de produits électroniques.
+            </p>
+            <p>
+                L'entreprise a besoin d'un outil interne (Dashboard) accessible aux équipes marketing pour analyser les clients et les commandes sans avoir accès direct à la base de données sécurisée. 
+                Votre mission est de développer le prototype <strong>AtlasShop Manager</strong> en JavaScript pur.
+            </p>
+            
+            <h3>Objectifs Techniques :</h3>
+            <ul>
+                <li>Créer une interface de type "Dashboard" adaptée au marché local.</li>
+                <li>Manipuler des données JSON représentant des clients marocains et des commandes en MAD.</li>
+                <li>Maîtriser les méthodes de tableau JavaScript : <code>filter()</code>, <code>map()</code>, <code>sort()</code>.</li>
+                <li>Simuler un moteur de requêtes SQL léger pour filtrer les ventes par ville ou par montant.</li>
+            </ul>
+        </section>
+
+        <!-- SECTION 2 -->
+        <section>
+            <h2>2. Cahier des Charges</h2>
+            <p>L'application doit permettre aux équipes de :</p>
+            <ul>
+                <li>Consulter la liste des clients par ville (ex: Casablanca, Rabat, Tanger).</li>
+                <li>Afficher les commandes récentes.</li>
+                <li>Saisir une requête SQL simple pour extraire des rapports (ex: Commandes > 3000 MAD).</li>
+            </ul>
+
+            <h3>Commandes SQL à implémenter (Version Standard) :</h3>
+            <ul>
+                <li><code>SELECT nom, ville FROM clients</code> (Projection)</li>
+                <li><code>SELECT * FROM commandes</code> (Sélection totale)</li>
+                <li><code>WHERE ville = 'Casablanca'</code> (Filtrage local)</li>
+                <li><code>WHERE prix > 2000</code> (Comparaison de montants en MAD)</li>
+                <li><code>ORDER BY prix DESC</code> (Tri par chiffre d'affaires)</li>
+            </ul>
+        </section>
+
+        <!-- SECTION 3 -->
+        <section>
+            <h2>3. Données de Départ (Le Schema Maroc)</h2>
+            <p>Intégrez ces données JSON dans votre fichier <code>app.js</code>. Notez l'utilisation du Dirham (MAD) et des villes marocaines.</p>
+
+<pre><code><span class="comment">// Base de données locale d'AtlasShop</span>
+<span class="keyword">const</span> atlasDatabase = {
+    clients: [
+        { id: 1, nom: <span class="string">"Alami"</span>, prenom: <span class="string">"Ahmed"</span>, ville: <span class="string">"Casablanca"</span>, age: <span class="number">28</span> },
+        { id: 2, nom: <span class="string">"Bennani"</span>, prenom: <span class="string">"Sara"</span>, ville: <span class="string">"Rabat"</span>, age: <span class="number">24</span> },
+        { id: 3, nom: <span class="string">"Idrissi"</span>, prenom: <span class="string">"Karim"</span>, ville: <span class="string">"Marrakech"</span>, age: <span class="number">31</span> },
+        { id: 4, nom: <span class="string">"Chaoui"</span>, prenom: <span class="string">"Fatima"</span>, ville: <span class="string">"Tanger"</span>, age: <span class="number">27</span> },
+        { id: 5, nom: <span class="string">"El Fassi"</span>, prenom: <span class="string">"Youssef"</span>, ville: <span class="string">"Fès"</span>, age: <span class="number">29</span> }
+    ],
+    commandes: [
+        { id: 101, client_id: <span class="number">1</span>, produit: <span class="string">"Samsung Galaxy"</span>, prix: <span class="number">4500.00</span>, statut: <span class="string">"Livré"</span> },
+        { id: 102, client_id: <span class="number">2</span>, produit: <span class="string">"Laptop HP"</span>, prix: <span class="number">7200.50</span>, statut: <span class="string">"En cours"</span> },
+        { id: 103, client_id: <span class="number">3</span>, produit: <span class="string">"Ecouteurs Bluetooth"</span>, prix: <span class="number">350.00</span>, statut: <span class="string">"Livré"</span> },
+        { id: 104, client_id: <span class="number">1</span>, produit: <span class="string">"Coque Smartphone"</span>, prix: <span class="number">120.00</span>, statut: <span class="string">"Annulé"</span> }
+    ]
+};</code></pre>
+        </section>
+
+        <!-- SECTION 4 -->
+        <section>
+            <h2>4. Plan d'Action (Sprints)</h2>
+            <p>Développez l'application en suivant les étapes ci-dessous.</p>
+
+            <h3>Sprint 1 : L'Interface "Dashboard" (HTML/CSS)</h3>
+            <ul>
+                <li>Créer une page avec un en-tête "AtlasShop Manager" et les couleurs nationales (Rouge et Vert) en touches subtiles.</li>
+                <li>Diviser l'écran : À gauche un éditeur de requête, à droite le tableau des résultats.</li>
+                <li>Intégrer un bouton "Lancer l'analyse" pour exécuter les fonctions JS.</li>
+            </ul>
+
+            <h3>Sprint 2 : Le Moteur de Lecture (SELECT)</h3>
+            <ul>
+                <li>Écrire une fonction <code>traiterRequete(sql)</code>.</li>
+                <li>Détecter si la requête cible la table <code>clients</code> ou <code>commandes</code>.</li>
+                <li>Afficher les données dans un tableau HTML <code>&lt;table&gt;</code> avec les colonnes correctes.</li>
+            </ul>
+
+            <h3>Sprint 3 : Le Filtrage Business (WHERE)</h3>
+            <ul>
+                <li>Permettre aux managers de filtrer les clients par ville (ex: <code>WHERE ville = 'Rabat'</code>).</li>
+                <li>Permettre de filtrer les commandes supérieures à un certain budget (ex: <code>WHERE prix > 5000</code>).</li>
+                <li>Utiliser <code>array.filter()</code> pour ne renvoyer que les données pertinentes.</li>
+            </ul>
+
+            <h3>Sprint 4 : Rapports et Tri (ORDER BY)</h3>
+            <ul>
+                <li>Implémenter le tri pour classer les commandes du plus cher au moins cher (<code>ORDER BY prix DESC</code>).</li>
+                <li>Gérer les erreurs : si le tape <code>SELECT * FROM fournisseurs</code> (table inexistante), afficher "Table introuvable" en rouge dans l'interface.</li>
+            </ul>
+        </section>
+
+        <!-- SECTION 5 -->
+        <section>
+            <h2>5. Grille d'Évaluation</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 60%">Critère</th>
+                        <th style="width: 20%">Points</th>
+                        <th style="width: 20%">Observation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Interface (UI/UX)</strong> : Design Dashboard, lisibilité, adaptation mobile.</td>
+                        <td align="center">/ 20</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fonctionnalité SELECT *</strong> : Affichage correct des données Clients/Commandes.</td>
+                        <td align="center">/ 20</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Filtrage (WHERE)</strong> : Gestion des villes et des prix (MAD).</td>
+                        <td align="center">/ 25</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tri (ORDER BY)</strong> : Classement fonctionnel.</td>
+                        <td align="center">/ 15</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gestion des erreurs</strong> : Messages clairs pour l'utilisateur.</td>
+                        <td align="center">/ 10</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Qualité du code</strong> : Structure JS propre, commentaires.</td>
+                        <td align="center">/ 10</td>
+                        <td></td>
+                    </tr>
+                    <tr style="background-color: #f1f1f1; font-weight: bold; border-top: 2px solid #006233;">
+                        <td>TOTAL</td>
+                        <td align="center">/ 100</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- PIED DE PAGE -->
+        <footer>
+            <span>BTS DAI 1ère Année </span>
+            <span> M. Z MESSGHATI</span>
+            <span>Lycée technique Fès</span>
+        </footer>
+    </div>
+
+</body>
+</html>
